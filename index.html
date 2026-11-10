@@ -4,17 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="O_DhCD7u8pPo-IqfdRj6RSKYIfnqz1trCb8v3QomNiM" />
+  
   <title>Matteo Gori | University of Vienna</title>
+
+  <!-- Open Graph metadata for rich previews (Slack, LinkedIn, messaging apps) -->
+  <meta property="og:title" content="Matteo Gori | University of Vienna" />
+  <meta property="og:description" content="PhD Student in Mathematics specializing in Geometric Analysis and Ricci curvature bounds." />
+  <meta property="og:image" content="https://mat2772.github.io/assets/profile.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Zero-asset embedded SVG favicon (Nabla symbol) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.85em%22 font-size=%2280%22 font-weight=%22bold%22 fill=%22%230f3966%22>%E2%88%87</text></svg>">
+
   <style>
     :root {
-      --text: #222222;
-      --muted: #555555;
+      --text: #1e293b;
+      --muted: #475569;
       --bg: #ffffff;
-      --accent: #003366; /* Academic navy */
+      --accent: #0f3966; /* Academic navy */
+      --accent-hover: #1e528a;
       --border: #e2e8f0;
-      --line: #eaeaea;
-      --tag-bg: #f1f5f9;
-      --tag-text: #475569;
+      --line: #f1f5f9;
+      --tag-bg: #f8fafc;
+      --tag-border: #cbd5e1;
+      --tag-text: #334155;
     }
 
     * {
@@ -23,93 +36,126 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
+      line-height: 1.65;
       color: var(--text);
       background-color: var(--bg);
-      padding: 2.5rem 1.5rem;
+      padding: 3rem 1.5rem;
     }
 
     .container {
-      max-width: 820px;
+      max-width: 840px;
       margin: 0 auto;
     }
 
+    /* Header & Photo */
     header {
       border-bottom: 2px solid var(--accent);
-      padding-bottom: 1.5rem;
-      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .header-layout {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .header-info {
+      flex: 1;
+    }
+
+    .passport-photo {
+      width: 130px;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      flex-shrink: 0;
     }
 
     h1 {
-      font-size: 2.1rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: var(--accent);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
     }
 
     .subtitle {
       font-size: 1.1rem;
       color: var(--muted);
-      margin-top: 0.25rem;
+      margin-top: 0.35rem;
+      font-weight: 400;
     }
 
     .contact-bar {
-      margin-top: 0.75rem;
-      font-size: 0.95rem;
+      margin-top: 1rem;
+      font-size: 0.92rem;
       color: var(--muted);
+      line-height: 1.6;
     }
 
-    .contact-bar a, a {
+    a {
       color: var(--accent);
       text-decoration: none;
+      transition: color 0.15s ease;
     }
 
     a:hover {
+      color: var(--accent-hover);
       text-decoration: underline;
     }
 
+    /* Sticky Navigation */
     nav {
       position: sticky;
       top: 0;
       background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
-      padding: 0.75rem 0;
-      margin-bottom: 2rem;
+      padding: 0.85rem 0;
+      margin-bottom: 2.5rem;
       z-index: 10;
     }
 
     nav a {
-      margin-right: 1.5rem;
+      margin-right: 1.75rem;
       font-weight: 600;
       font-size: 0.95rem;
     }
 
+    /* Sections */
     section {
-      margin-bottom: 3rem;
+      margin-bottom: 3.25rem;
+      scroll-margin-top: 4.5rem;
     }
 
     h2 {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       color: var(--accent);
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.45rem;
       margin-bottom: 1.25rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
     }
 
     h3 {
       font-size: 1.05rem;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--text);
       margin-bottom: 0.75rem;
     }
 
     .entry {
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.35rem;
     }
 
     .entry-header {
@@ -117,6 +163,7 @@
       justify-content: space-between;
       align-items: baseline;
       flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     .institution {
@@ -125,7 +172,7 @@
     }
 
     .date {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--muted);
       font-variant-numeric: tabular-nums;
     }
@@ -133,7 +180,8 @@
     .sub-entry {
       font-style: italic;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      margin-top: 0.1rem;
     }
 
     ul {
@@ -153,7 +201,7 @@
     }
 
     .doc-list li {
-      margin-bottom: 1.15rem;
+      margin-bottom: 1.25rem;
     }
 
     .doc-title {
@@ -163,26 +211,28 @@
 
     .doc-meta {
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
+      margin-top: 0.15rem;
     }
 
     .doc-links {
-      font-size: 0.88rem;
-      margin-top: 0.2rem;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
     }
 
     .lang-tag {
       display: inline-block;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
       color: var(--tag-text);
-      padding: 0.1rem 0.45rem;
+      padding: 0.05rem 0.4rem;
       border-radius: 3px;
       font-weight: 600;
-      margin-left: 0.4rem;
-      vertical-align: middle;
+      margin-left: 0.35rem;
+      vertical-align: 1px;
     }
 
     .conference-list {
@@ -193,34 +243,75 @@
     .conference-list li {
       display: flex;
       justify-content: space-between;
-      padding: 0.35rem 0;
-      border-bottom: 1px dotted var(--line);
+      align-items: baseline;
+      padding: 0.4rem 0;
+      border-bottom: 1px dotted var(--border);
+      gap: 1rem;
     }
 
     .conf-title {
       font-weight: 500;
+      font-size: 0.95rem;
     }
 
     .conf-place {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+      white-space: nowrap;
     }
 
     .placeholder-box {
       background-color: #f8fafc;
-      border: 1px dashed #cbd5e1;
+      border: 1px dashed var(--tag-border);
       border-radius: 4px;
       padding: 1.25rem;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
     footer {
-      border-top: 1px solid var(--line);
-      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.75rem;
+      margin-top: 4rem;
       font-size: 0.85rem;
       color: var(--muted);
       text-align: center;
+    }
+
+    /* Print Stylesheet */
+    @media print {
+      nav, footer, .doc-links, .placeholder-box {
+        display: none !important;
+      }
+      body {
+        padding: 0;
+        color: #000;
+      }
+      header {
+        border-bottom: 1px solid #333;
+      }
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+
+    /* Mobile screens */
+    @media (max-width: 640px) {
+      .header-layout {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 1.25rem;
+      }
+
+      .passport-photo {
+        width: 110px;
+      }
+
+      .conference-list li {
+        flex-direction: column;
+        gap: 0.15rem;
+      }
     }
   </style>
 </head>
@@ -228,21 +319,32 @@
 
   <div class="container">
     <header>
-      <h1>Matteo Gori</h1>
-      <p class="subtitle">PhD Student in Mathematics | University of Vienna</p>
-      <div class="contact-bar">
-  Department of Mathematics, University of Vienna<br>
-  Oskar-Morgenstern-Platz 1, 1090 Vienna, Austria, Room 03.129<br>
-  Email: <a href="mailto:matteo.gori@univie.ac.at">matteo.gori@univie.ac.at</a> &middot; <a href="mailto:matte2772@gmail.com">matte2772@gmail.com</a> &middot; 
-  <a href="https://github.com/mat2772" target="_blank">GitHub</a>
-</div>
+      <div class="header-layout">
+        <div class="header-info">
+          <h1>Matteo Gori</h1>
+          <p class="subtitle">PhD Student in Mathematics &middot; University of Vienna</p>
+          <div class="contact-bar">
+            Department of Mathematics, University of Vienna<br>
+            Oskar-Morgenstern-Platz 1, 1090 Vienna, Austria &middot; Room 03.129<br>
+            Email: <a href="mailto:matteo.gori@univie.ac.at">matteo.gori@univie.ac.at</a> &middot; 
+            <a href="mailto:matte2772@gmail.com">matte2772@gmail.com</a><br>
+            <a href="https://orcid.org/0009-0004-9562-5755" target="_blank" rel="noopener noreferrer">ORCID: 0009-0004-9562-5755</a> &middot; 
+            <a href="https://github.com/mat2772" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+
+        <img 
+          src="assets/profile.jpg" 
+          alt="Matteo Gori" 
+          class="passport-photo" 
+        />
+      </div>
     </header>
 
     <nav>
       <a href="#about">About</a>
       <a href="#research">Research &amp; Talks</a>
       <a href="#cv">Curriculum Vitae</a>
-      <a href="#interests">Interests</a>
     </nav>
 
     <!-- ABOUT SECTION -->
@@ -250,12 +352,12 @@
       <h2>About Me</h2>
       <p>
         I am a PhD student in Mathematics at the Department of Mathematics, University of Vienna, 
-        advised by <a href="https://danielesemola.weebly.com/" target="_blank" rel="noopener noreferrer">Prof. Daniele Semola</a>. My doctoral research focuses on 
-        <strong>Geometric Analysis under lower Ricci Curvature bounds</strong>.
+        supervised by <a href="https://danielesemola.weebly.com/" target="_blank" rel="noopener noreferrer">Prof. Daniele Semola</a>. My doctoral research focuses on 
+        <strong>Geometric Analysis under lower Ricci curvature bounds</strong>.
       </p>
-      <p style="margin-top: 0.75rem;">
+      <p style="margin-top: 0.85rem;">
         Previously, I was an <em>Allievo Ordinario</em> at Scuola Normale Superiore in Pisa and completed 
-        my Master's degree in Mathematics at the University of Pisa, alongside an exchange semester at ETH Zürich.
+        my Master's degree in Mathematics at the University of Pisa, alongside an exchange semester at ETH Z&uuml;rich.
       </p>
     </section>
 
@@ -263,8 +365,7 @@
     <section id="research">
       <h2>Research, Theses &amp; Talks</h2>
       <p style="margin-bottom: 1.5rem;">
-        <strong>Research Interests:</strong> Geometric Measure Theory, Optimal Transport, Functional Analysis, 
-        Harmonic Analysis, Metric Geometry, and spaces with Ricci curvature bounds.
+        <strong>Research Interests:</strong> Geometric Measure Theory, Optimal Transport, Functional and Harmonic Analysis, Metric Geometry, and Analysis on Metric Measure Spaces (synthetic Ricci curvature bounds).
       </p>
 
       <!-- Preprints -->
@@ -282,26 +383,23 @@
             MSc Thesis, University of Pisa (2026) &middot; Supervised by Prof. Alessio Figalli and Prof. Luigi Ambrosio
           </div>
           <div class="doc-links">
-            [<a href="files/master-thesis.pdf" target="_blank">Thesis PDF</a>]
-            &middot;
-            [<a href="files/master-slides.pdf" target="_blank">Defense Slides</a>]
-            &middot;
-            [<a href="https://etd.adm.unipi.it/" target="_blank">ETD Pisa</a>]
+            [<a href="files/master-thesis.pdf" target="_blank" rel="noopener noreferrer">Thesis PDF</a>] &middot;
+            [<a href="files/master-slides.pdf" target="_blank" rel="noopener noreferrer">Defense Slides</a>] &middot;
+            [<a href="https://etd.adm.unipi.it/" target="_blank" rel="noopener noreferrer">ETD Pisa</a>]
           </div>
         </li>
 
         <li>
           <div class="doc-title">
-            Vector measures and Radon-Nikodym property
+            Vector Measures and the Radon–Nikodym Property
             <span class="lang-tag">Italian</span>
           </div>
           <div class="doc-meta">
             BSc Thesis, University of Pisa (2024) &middot; Supervised by Prof. Pietro Majer
           </div>
           <div class="doc-links">
-            [<a href="files/bachelor-thesis.pdf" target="_blank">Thesis PDF</a>]
-            &middot;
-            [<a href="files/bachelor-slides.pdf" target="_blank">Defense Slides</a>]
+            [<a href="files/bachelor-thesis.pdf" target="_blank" rel="noopener noreferrer">Thesis PDF</a>] &middot;
+            [<a href="files/bachelor-slides.pdf" target="_blank" rel="noopener noreferrer">Defense Slides</a>]
           </div>
         </li>
       </ul>
@@ -315,201 +413,168 @@
             Scuola Normale Superiore, 4th-Year Colloquium (2025) &middot; Supervised by Prof. Luigi Ambrosio
           </div>
           <div class="doc-links">
-            [<a href="files/sns-colloquium-4-slides.pdf" target="_blank">Slides</a>]
+            [<a href="files/sns-colloquium-4-slides.pdf" target="_blank" rel="noopener noreferrer">Slides</a>]
           </div>
         </li>
 
         <li>
           <div class="doc-title">
-            Pontryagin Duality for locally compact and abelian groups
+            Pontryagin Duality for Locally Compact Abelian Groups
             <span class="lang-tag">Italian</span>
           </div>
           <div class="doc-meta">
             Scuola Normale Superiore, 3rd-Year Colloquium (2024) &middot; Supervised by Dr. Gian Maria Dall'Ara
           </div>
           <div class="doc-links">
-            [<a href="files/sns-colloquium-3-slides.pdf" target="_blank">Slides</a>]
+            [<a href="files/sns-colloquium-3-slides.pdf" target="_blank" rel="noopener noreferrer">Slides</a>]
           </div>
         </li>
       </ul>
     </section>
 
-<!-- CURRICULUM VITAE (EMBEDDED) -->
+    <!-- CURRICULUM VITAE -->
     <section id="cv">
-      <!-- Section Header with PDF download link -->
-      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); margin-bottom: 1.25rem;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border); margin-bottom: 1.25rem;">
         <h2 style="border-bottom: none; margin-bottom: 0.4rem;">Curriculum Vitae</h2>
-        <a href="files/cv.pdf" target="_blank" style="font-size: 0.9rem; font-weight: 600;">[Download PDF]</a>
+        <a href="files/cv.pdf" target="_blank" rel="noopener noreferrer" style="font-size: 0.9rem; font-weight: 600;">[Download PDF]</a>
       </div>
 
       <!-- Education -->
+      <h3 style="margin-bottom: 1rem;">Education</h3>
+
       <div class="entry">
-        <h3>Education</h3>
-
-        <div class="entry">
-          <div class="entry-header">
-            <span class="institution">University of Vienna</span>
-            <span class="date">09.2026 – Present</span>
-          </div>
-          <div class="sub-entry">PhD in Mathematics | Vienna, Austria</div>
-          <ul>
-            <li>Research topic: Geometric Analysis under lower Ricci Curvature bounds</li>
-            <li>Supervisor: Prof. Daniele Semola</li>
-          </ul>
+        <div class="entry-header">
+          <span class="institution">University of Vienna</span>
+          <span class="date">Sep 2026 – Present</span>
         </div>
+        <div class="sub-entry">PhD in Mathematics &middot; Vienna, Austria</div>
+        <ul>
+          <li>Advisor: Prof. Daniele Semola</li>
+          <li>Topic: Geometric Analysis under lower Ricci curvature bounds</li>
+        </ul>
+      </div>
 
-        <div class="entry">
-          <div class="entry-header">
-            <span class="institution">Scuola Normale Superiore</span>
-            <span class="date">09.2021 – 2026</span>
-          </div>
-          <div class="sub-entry">Allievo Ordinario | Pisa, Italy</div>
-          <ul>
-            <li>
-              Fourth-year colloquium: <em>Purely Unrectifiable Sets in Metric Spaces</em> (supervisor: Prof. Luigi Ambrosio)
-              [<a href="files/sns-colloquium-4-slides.pdf" target="_blank">Slides</a>]
-            </li>
-            <li>
-              Third-year colloquium <em>(in Italian)</em>: <em>Pontryagin Duality for locally compact and abelian groups</em> (supervisor: Dr. Gian Maria Dall'Ara)
-              [<a href="files/sns-colloquium-3-slides.pdf" target="_blank">Slides</a>]
-            </li>
-          </ul>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="institution">Scuola Normale Superiore</span>
+          <span class="date">Sep 2021 – 2026</span>
         </div>
+        <div class="sub-entry">Allievo Ordinario (Honors Collegiate Fellow) &middot; Pisa, Italy</div>
+        <ul>
+          <li>Colloquia on <em>Purely Unrectifiable Sets</em> and <em>Pontryagin Duality</em> (see <a href="#research">Research &amp; Talks</a> for slides)</li>
+        </ul>
+      </div>
 
-        <div class="entry">
-          <div class="entry-header">
-            <span class="institution">University of Pisa</span>
-            <span class="date">09.2024 – 06.2026</span>
-          </div>
-          <div class="sub-entry">MSc in Mathematics | Pisa, Italy</div>
-          <ul>
-            <li>Grade: 110/110 cum laude</li>
-            <li>
-              Thesis: <em>On Quantitative Stability for the Isoperimetric Inequality</em> (supervisors: Prof. Alessio Figalli, Prof. Luigi Ambrosio)
-              [<a href="files/master-thesis.pdf" target="_blank">Thesis</a>]
-              [<a href="files/master-slides.pdf" target="_blank">Slides</a>]
-              [<a href="https://etd.adm.unipi.it/" target="_blank">ETD</a>]
-            </li>
-          </ul>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="institution">University of Pisa</span>
+          <span class="date">Sep 2024 – Jun 2026</span>
         </div>
+        <div class="sub-entry">MSc in Mathematics &middot; Pisa, Italy</div>
+        <ul>
+          <li>Grade: 110/110 cum laude</li>
+          <li>Thesis on quantitative stability for isoperimetric inequalities supervised by Prof. Alessio Figalli and Prof. Luigi Ambrosio</li>
+        </ul>
+      </div>
 
-        <div class="entry">
-          <div class="entry-header">
-            <span class="institution">ETH Zurich</span>
-            <span class="date">09.2025 – 02.2026</span>
-          </div>
-          <div class="sub-entry">SEMP Exchange Semester | Zurich, Switzerland</div>
-          <ul>
-            <li>Research project on stability of functional and geometric inequalities: improvements for the quantitative isoperimetric inequality (supervisor: Prof. Alessio Figalli)</li>
-          </ul>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="institution">ETH Zurich</span>
+          <span class="date">Sep 2025 – Feb 2026</span>
         </div>
+        <div class="sub-entry">Exchange Semester &middot; Zurich, Switzerland</div>
+        <ul>
+          <li>Research project on quantitative stability of geometric inequalities supervised by Prof. Alessio Figalli</li>
+        </ul>
+      </div>
 
-        <div class="entry">
-          <div class="entry-header">
-            <span class="institution">University of Pisa</span>
-            <span class="date">09.2021 – 07.2024</span>
-          </div>
-          <div class="sub-entry">BSc in Mathematics | Pisa, Italy</div>
-          <ul>
-            <li>Grade: 110/110 cum laude</li>
-            <li>
-              Thesis <em>(in Italian)</em>: <em>Vector measures and Radon-Nikodym property</em> (supervisor: Prof. Pietro Majer)
-              [<a href="files/bachelor-thesis.pdf" target="_blank">Thesis</a>]
-              [<a href="files/bachelor-slides.pdf" target="_blank">Slides</a>]
-            </li>
-          </ul>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="institution">University of Pisa</span>
+          <span class="date">Sep 2021 – Jul 2024</span>
         </div>
-
-        <div class="entry">
-          <div class="entry-header">
-            <span class="institution">Liceo Scientifico Ulisse Dini</span>
-            <span class="date">2016 – 2021</span>
-          </div>
-          <div class="sub-entry">High School Diploma | Pisa, Italy</div>
-        </div>
+        <div class="sub-entry">BSc in Mathematics &middot; Pisa, Italy</div>
+        <ul>
+          <li>Grade: 110/110 cum laude</li>
+          <li>Thesis supervised by Prof. Pietro Majer</li>
+        </ul>
       </div>
 
       <!-- Awards & Honors -->
-      <div class="entry">
-        <h3>Awards &amp; Honors</h3>
-        <ul>
-          <li><strong>Silver Medal</strong> (7th place), Imperial-Cambridge Mathematics Competition (2024)</li>
-          <li><strong>Full Scholarship</strong>, Scuola Normale Superiore — provides full board, lodging, and tuition upon competitive examination and maintaining high academic standards (2021)</li>
-          <li><strong>Gold Medal</strong> (4th place), Italian Mathematical Olympiads — recognized by <em>Fuoriclasse della Scuola</em> Award (2021)</li>
-          <li><strong>Bronze Medal</strong>, Italian Physics Olympiads (2021)</li>
-          <li><strong>Gold Medal</strong> (5th place), Italian Mathematical Olympiads — recognized by <em>Banca d'Italia</em> Prize (2020)</li>
-          <li><strong>Silver Medal</strong> (21st place), Balkan Mathematical Olympiads (2020)</li>
-        </ul>
-      </div>
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Awards &amp; Honors</h3>
+      <ul>
+        <li><strong>Silver Medal</strong> (7th place), Imperial-Cambridge Mathematics Competition (2024)</li>
+        <li><strong>Scuola Normale Superiore Fellowship</strong> — Merit-based award covering full tuition, room, and board, awarded via national competitive entrance examination (2021)</li>
+        <li><strong>Gold Medal</strong> (4th place), Italian Mathematical Olympiads — recognized by <em>Fuoriclasse della Scuola</em> Award (2021)</li>
+        <li><strong>Bronze Medal</strong>, Italian Physics Olympiads (2021)</li>
+        <li><strong>Gold Medal</strong> (5th place), Italian Mathematical Olympiads — recognized by <em>Banca d'Italia</em> Prize (2020)</li>
+        <li><strong>Silver Medal</strong> (21st place), Balkan Mathematical Olympiads (2020)</li>
+      </ul>
 
       <!-- Conferences & Schools -->
-      <div class="entry">
-        <h3>Conferences &amp; Summer Schools</h3>
-        <ul class="conference-list">
-          <li>
-            <span class="conf-title">35th Jyväskylä Summer School</span>
-            <span class="conf-place">Jyväskylä, Finland (08/2026)</span>
-          </li>
-          <li>
-            <span class="conf-title">GMT: Unraveling the Structure of Singularities</span>
-            <span class="conf-place">Trento, Italy (07/2026)</span>
-          </li>
-          <li>
-            <span class="conf-title">GMT: between PDEs and Geometric Analysis</span>
-            <span class="conf-place">Trento, Italy (06/2026)</span>
-          </li>
-          <li>
-            <span class="conf-title">14th School on Analysis and Geometry in Metric Spaces</span>
-            <span class="conf-place">Trento, Italy (06/2026)</span>
-          </li>
-          <li>
-            <span class="conf-title">Valentia Geometrica</span>
-            <span class="conf-place">Valencia, Spain (04/2026)</span>
-          </li>
-          <li>
-            <span class="conf-title">Topics in Geometric Measure Theory</span>
-            <span class="conf-place">Pisa, Italy (07/2025)</span>
-          </li>
-          <li>
-            <span class="conf-title">Topics in Geometric Analysis</span>
-            <span class="conf-place">Pisa, Italy (06/2025)</span>
-          </li>
-          <li>
-            <span class="conf-title">School in Geometric Measure Theory and related topics</span>
-            <span class="conf-place">Pisa, Italy (06/2025)</span>
-          </li>
-          <li>
-            <span class="conf-title">Selected topics in Calculus of Variations and PDEs</span>
-            <span class="conf-place">Pisa, Italy (04/2025)</span>
-          </li>
-          <li>
-            <span class="conf-title">Optimal Transportation and Applications</span>
-            <span class="conf-place">Pisa, Italy (12/2024)</span>
-          </li>
-          <li>
-            <span class="conf-title">Geometric Problems in Analysis</span>
-            <span class="conf-place">Padua, Italy (06/2024)</span>
-          </li>
-        </ul>
-      </div>
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Conferences &amp; Summer Schools</h3>
+      <ul class="conference-list">
+        <li>
+          <span class="conf-title">35th Jyv&auml;skyl&auml; Summer School</span>
+          <span class="conf-place">Jyv&auml;skyl&auml;, Finland (Aug 2026)</span>
+        </li>
+        <li>
+          <span class="conf-title">GMT: Unraveling the Structure of Singularities</span>
+          <span class="conf-place">Trento, Italy (Jul 2026)</span>
+        </li>
+        <li>
+          <span class="conf-title">GMT: between PDEs and Geometric Analysis</span>
+          <span class="conf-place">Trento, Italy (Jun 2026)</span>
+        </li>
+        <li>
+          <span class="conf-title">14th School on Analysis and Geometry in Metric Spaces</span>
+          <span class="conf-place">Trento, Italy (Jun 2026)</span>
+        </li>
+        <li>
+          <span class="conf-title">Valentia Geometrica</span>
+          <span class="conf-place">Valencia, Spain (Apr 2026)</span>
+        </li>
+        <li>
+          <span class="conf-title">Topics in Geometric Measure Theory</span>
+          <span class="conf-place">Pisa, Italy (Jul 2025)</span>
+        </li>
+        <li>
+          <span class="conf-title">Topics in Geometric Analysis</span>
+          <span class="conf-place">Pisa, Italy (Jun 2025)</span>
+        </li>
+        <li>
+          <span class="conf-title">School in Geometric Measure Theory and related topics</span>
+          <span class="conf-place">Pisa, Italy (Jun 2025)</span>
+        </li>
+        <li>
+          <span class="conf-title">Selected topics in Calculus of Variations and PDEs</span>
+          <span class="conf-place">Pisa, Italy (Apr 2025)</span>
+        </li>
+        <li>
+          <span class="conf-title">Optimal Transportation and Applications</span>
+          <span class="conf-place">Pisa, Italy (Dec 2024)</span>
+        </li>
+        <li>
+          <span class="conf-title">Geometric Problems in Analysis</span>
+          <span class="conf-place">Padua, Italy (Jun 2024)</span>
+        </li>
+      </ul>
 
       <!-- Skills -->
-      <div class="entry">
-        <h3>Skills &amp; Languages</h3>
-        <ul>
-          <li><strong>Languages:</strong> Italian (Native), English (C1), French (A2), German (A1)</li>
-          <li><strong>Programming:</strong> Python, C++, MATLAB</li>
-        </ul>
-      </div>
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Skills &amp; Languages</h3>
+      <ul>
+        <li><strong>Languages:</strong> Italian (native), English (fluent), French (elementary), German (basic)</li>
+        <li><strong>Technical &amp; Scientific Tools:</strong> LaTeX / TikZ, Python, C++, MATLAB</li>
+      </ul>
     </section>
 
-    <!-- PERSONAL INTERESTS SECTION -->
-    <section id="interests">
-      <h2>Personal Interests</h2>
-      <div class="placeholder-box">
-        Outside of mathematics, this section will feature personal pursuits, hobbies, and reading interests.
-      </div>
-    </section>
+    <!-- 
+      PERSONAL INTERESTS (Uncomment when you want to add content)
+      <section id="interests">
+        <h2>Personal Interests</h2>
+        <p>Outside of mathematics, I enjoy [your hobbies/interests here].</p>
+      </section>
+    -->
 
     <footer>
       &copy; Matteo Gori &middot; Hosted on GitHub Pages
