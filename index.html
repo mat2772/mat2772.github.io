@@ -7,7 +7,7 @@
   
   <title>Matteo Gori | University of Vienna</title>
 
-  <!-- Open Graph metadata for rich previews (Slack, LinkedIn, messaging apps) -->
+  <!-- Open Graph metadata -->
   <meta property="og:title" content="Matteo Gori | University of Vienna" />
   <meta property="og:description" content="PhD Student in Mathematics specializing in Geometric Analysis and Ricci curvature bounds." />
   <meta property="og:image" content="https://mat2772.github.io/assets/profile.jpg" />
@@ -36,8 +36,9 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
+    ::selection {
+      background-color: #e0e7ff;
+      color: var(--accent);
     }
 
     body {
@@ -53,35 +54,15 @@
       margin: 0 auto;
     }
 
-    /* Header & Photo */
+    /* Header */
     header {
       border-bottom: 2px solid var(--accent);
-      padding-bottom: 2rem;
+      padding-bottom: 1.75rem;
       margin-bottom: 1.5rem;
     }
 
-    .header-layout {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .header-info {
-      flex: 1;
-    }
-
-    .passport-photo {
-      width: 130px;
-      height: auto;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      flex-shrink: 0;
-    }
-
     h1 {
-      font-size: 2.2rem;
+      font-size: 2.25rem;
       font-weight: 700;
       color: var(--accent);
       letter-spacing: -0.025em;
@@ -102,39 +83,78 @@
       line-height: 1.6;
     }
 
+    /* Links & Typography */
     a {
       color: var(--accent);
-      text-decoration: none;
-      transition: color 0.15s ease;
+      text-decoration: underline;
+      text-decoration-color: #cbd5e1;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: all 0.15s ease;
     }
 
     a:hover {
       color: var(--accent-hover);
+      text-decoration-color: var(--accent);
+    }
+
+    .doc-links a, .contact-bar a {
+      text-decoration: none;
+    }
+
+    .doc-links a:hover, .contact-bar a:hover {
       text-decoration: underline;
     }
 
-    /* Sticky Navigation */
+    /* Tabbed Navigation Bar */
     nav {
       position: sticky;
       top: 0;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
-      padding: 0.85rem 0;
+      padding: 0.85rem 0 0 0;
       margin-bottom: 2.5rem;
       z-index: 10;
+      display: flex;
+      gap: 1.75rem;
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
     nav a {
-      margin-right: 1.75rem;
-      font-weight: 600;
-      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.98rem;
+      text-decoration: none;
+      padding-bottom: 0.65rem;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s ease;
     }
 
-    /* Sections */
-    section {
-      margin-bottom: 3.25rem;
-      scroll-margin-top: 4.5rem;
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a.active {
+      color: var(--accent);
+      font-weight: 700;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    /* Single-Page Section Views */
+    .section-view {
+      display: none; /* Hidden by default; JavaScript shows only the active tab */
+      animation: fadeIn 0.15s ease-in-out;
+    }
+
+    .section-view.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h2 {
@@ -154,6 +174,27 @@
       margin-bottom: 0.75rem;
     }
 
+    /* About Section Layout */
+    .about-layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-photo {
+      width: 175px;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      flex-shrink: 0;
+    }
+
+    /* Lists & Entries */
     .entry {
       margin-bottom: 1.35rem;
     }
@@ -185,7 +226,7 @@
     }
 
     ul {
-      list-style-type: square;
+      list-style-type: disc;
       margin-left: 1.25rem;
       margin-top: 0.35rem;
     }
@@ -193,6 +234,10 @@
     li {
       margin-bottom: 0.45rem;
       font-size: 0.95rem;
+    }
+
+    li::marker {
+      color: #94a3b8;
     }
 
     .doc-list {
@@ -278,10 +323,14 @@
       text-align: center;
     }
 
-    /* Print Stylesheet */
+    /* Print Stylesheet: prints all sections sequentially if someone prints to PDF */
     @media print {
       nav, footer, .doc-links, .placeholder-box {
         display: none !important;
+      }
+      .section-view {
+        display: block !important;
+        margin-bottom: 2.5rem;
       }
       body {
         padding: 0;
@@ -298,14 +347,19 @@
 
     /* Mobile screens */
     @media (max-width: 640px) {
-      .header-layout {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        gap: 1.25rem;
+      .about-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
       }
 
-      .passport-photo {
-        width: 110px;
+      .about-text {
+        order: 1;
+      }
+
+      .about-photo {
+        order: 2;
+        width: 150px;
       }
 
       .conference-list li {
@@ -319,57 +373,57 @@
 
   <div class="container">
     <header>
-      <div class="header-layout">
-        <div class="header-info">
-          <h1>Matteo Gori</h1>
-          <p class="subtitle">PhD Student in Mathematics &middot; University of Vienna</p>
-          <div class="contact-bar">
-            Department of Mathematics, University of Vienna<br>
-            Oskar-Morgenstern-Platz 1, 1090 Vienna, Austria &middot; Room 03.129<br>
-            Email: <a href="mailto:matteo.gori@univie.ac.at">matteo.gori@univie.ac.at</a> &middot; 
-            <a href="mailto:matte2772@gmail.com">matte2772@gmail.com</a><br>
-            <a href="https://orcid.org/0009-0004-9562-5755" target="_blank" rel="noopener noreferrer">ORCID: 0009-0004-9562-5755</a> &middot; 
-            <a href="https://github.com/mat2772" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </div>
+      <h1>Matteo Gori</h1>
+      <p class="subtitle">PhD Student in Mathematics &middot; University of Vienna</p>
+      <div class="contact-bar">
+        Department of Mathematics, University of Vienna<br>
+        Oskar-Morgenstern-Platz 1, 1090 Vienna, Austria &middot; Room 03.129<br>
+        Email: <a href="mailto:matteo.gori@univie.ac.at">matteo.gori@univie.ac.at</a> &middot; 
+        <a href="mailto:matte2772@gmail.com">matte2772@gmail.com</a><br>
+        <a href="https://orcid.org/0009-0004-9562-5755" target="_blank" rel="noopener noreferrer">ORCID: 0009-0004-9562-5755</a> &middot; 
+        <a href="https://github.com/mat2772" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </header>
+
+    <nav id="navbar">
+      <a href="#about" class="active">About</a>
+      <a href="#research">Research</a>
+      <a href="#cv">Curriculum Vitae</a>
+    </nav>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section-view active">
+      <h2>About</h2>
+      <div class="about-layout">
+        <div class="about-text">
+          <p>
+            I am a PhD student in Mathematics at the Department of Mathematics, University of Vienna, 
+            supervised by <a href="https://danielesemola.weebly.com/" target="_blank" rel="noopener noreferrer">Prof. Daniele Semola</a>. My doctoral research focuses on 
+            <strong>Geometric Analysis under lower Ricci curvature bounds</strong>.
+          </p>
+          <p style="margin-top: 0.85rem;">
+            Previously, I was an <em>Allievo Ordinario</em> at Scuola Normale Superiore in Pisa and completed 
+            my Master's degree in Mathematics at the University of Pisa, alongside an exchange semester at ETH Z&uuml;rich.
+          </p>
         </div>
 
         <img 
           src="assets/profile.jpg" 
           alt="Matteo Gori" 
-          class="passport-photo" 
+          class="about-photo" 
         />
       </div>
-    </header>
-
-    <nav>
-      <a href="#about">About</a>
-      <a href="#research">Research &amp; Talks</a>
-      <a href="#cv">Curriculum Vitae</a>
-    </nav>
-
-    <!-- ABOUT SECTION -->
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I am a PhD student in Mathematics at the Department of Mathematics, University of Vienna, 
-        supervised by <a href="https://danielesemola.weebly.com/" target="_blank" rel="noopener noreferrer">Prof. Daniele Semola</a>. My doctoral research focuses on 
-        <strong>Geometric Analysis under lower Ricci curvature bounds</strong>.
-      </p>
-      <p style="margin-top: 0.85rem;">
-        Previously, I was an <em>Allievo Ordinario</em> at Scuola Normale Superiore in Pisa and completed 
-        my Master's degree in Mathematics at the University of Pisa, alongside an exchange semester at ETH Z&uuml;rich.
-      </p>
     </section>
 
-    <!-- RESEARCH, THESES & EXPOSITORY TALKS -->
-    <section id="research">
-      <h2>Research, Theses &amp; Talks</h2>
+    <!-- RESEARCH SECTION -->
+    <section id="research" class="section-view">
+      <h2>Research</h2>
       <p style="margin-bottom: 1.5rem;">
         <strong>Research Interests:</strong> Geometric Measure Theory, Optimal Transport, Functional and Harmonic Analysis, Metric Geometry, and Analysis on Metric Measure Spaces (synthetic Ricci curvature bounds).
       </p>
 
-      <!-- Preprints -->
-      <h3>Preprints &amp; Publications</h3>
+      <!-- Preprints & Publications -->
+      <h3>Preprints and Publications</h3>
       <div class="placeholder-box" style="margin-bottom: 2rem;">
         Preprints and papers will appear here as they are completed.
       </div>
@@ -404,8 +458,8 @@
         </li>
       </ul>
 
-      <!-- Colloquia & Presentations -->
-      <h3 style="margin-top: 2rem;">Colloquia &amp; Presentations</h3>
+      <!-- Presentations -->
+      <h3 style="margin-top: 2rem;">Presentations</h3>
       <ul class="doc-list">
         <li>
           <div class="doc-title">Purely Unrectifiable Sets in Metric Spaces</div>
@@ -432,8 +486,8 @@
       </ul>
     </section>
 
-    <!-- CURRICULUM VITAE -->
-    <section id="cv">
+    <!-- CURRICULUM VITAE SECTION -->
+    <section id="cv" class="section-view">
       <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border); margin-bottom: 1.25rem;">
         <h2 style="border-bottom: none; margin-bottom: 0.4rem;">Curriculum Vitae</h2>
         <a href="files/cv.pdf" target="_blank" rel="noopener noreferrer" style="font-size: 0.9rem; font-weight: 600;">[Download PDF]</a>
@@ -461,7 +515,7 @@
         </div>
         <div class="sub-entry">Allievo Ordinario (Honors Collegiate Fellow) &middot; Pisa, Italy</div>
         <ul>
-          <li>Colloquia on <em>Purely Unrectifiable Sets</em> and <em>Pontryagin Duality</em> (see <a href="#research">Research &amp; Talks</a> for slides)</li>
+          <li>Colloquia on <em>Purely Unrectifiable Sets</em> and <em>Pontryagin Duality</em> (see <a href="#research">Research</a> for slides)</li>
         </ul>
       </div>
 
@@ -500,8 +554,8 @@
         </ul>
       </div>
 
-      <!-- Awards & Honors -->
-      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Awards &amp; Honors</h3>
+      <!-- Awards and Honors -->
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Awards and Honors</h3>
       <ul>
         <li><strong>Silver Medal</strong> (7th place), Imperial-Cambridge Mathematics Competition (2024)</li>
         <li><strong>Scuola Normale Superiore Fellowship</strong> — Merit-based award covering full tuition, room, and board, awarded via national competitive entrance examination (2021)</li>
@@ -511,8 +565,8 @@
         <li><strong>Silver Medal</strong> (21st place), Balkan Mathematical Olympiads (2020)</li>
       </ul>
 
-      <!-- Conferences & Schools -->
-      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Conferences &amp; Summer Schools</h3>
+      <!-- Conferences and Summer Schools -->
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Conferences and Summer Schools</h3>
       <ul class="conference-list">
         <li>
           <span class="conf-title">35th Jyv&auml;skyl&auml; Summer School</span>
@@ -560,26 +614,53 @@
         </li>
       </ul>
 
-      <!-- Skills -->
-      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Skills &amp; Languages</h3>
+      <!-- Skills and Languages -->
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Skills and Languages</h3>
       <ul>
         <li><strong>Languages:</strong> Italian (native), English (fluent), French (elementary), German (basic)</li>
         <li><strong>Technical &amp; Scientific Tools:</strong> LaTeX / TikZ, Python, C++, MATLAB</li>
       </ul>
     </section>
 
-    <!-- 
-      PERSONAL INTERESTS (Uncomment when you want to add content)
-      <section id="interests">
-        <h2>Personal Interests</h2>
-        <p>Outside of mathematics, I enjoy [your hobbies/interests here].</p>
-      </section>
-    -->
-
     <footer>
       &copy; Matteo Gori &middot; Hosted on GitHub Pages
     </footer>
   </div>
+
+  <script>
+    // Handles tab switching and deep linking based on the URL hash
+    function renderRoute() {
+      const allowedHashes = ['#about', '#research', '#cv'];
+      let target = window.location.hash;
+
+      if (!allowedHashes.includes(target)) {
+        target = '#about';
+      }
+
+      // Hide all tabs, then activate target
+      document.querySelectorAll('.section-view').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      const activeSection = document.querySelector(target);
+      if (activeSection) {
+        activeSection.classList.add('active');
+      }
+
+      // Update active navigation link
+      document.querySelectorAll('#navbar a').forEach(link => {
+        if (link.getAttribute('href') === target) {
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    window.addEventListener('hashchange', renderRoute);
+    window.addEventListener('DOMContentLoaded', renderRoute);
+  </script>
 
 </body>
 </html>
