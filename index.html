@@ -144,7 +144,7 @@
 
     /* Single-Page Section Views */
     .section-view {
-      display: none; /* Hidden by default; JavaScript shows only the active tab */
+      display: none;
       animation: fadeIn 0.15s ease-in-out;
     }
 
@@ -174,24 +174,24 @@
       margin-bottom: 0.75rem;
     }
 
-    /* About Section Layout */
+    /* About Section Layout (Prominent Portrait) */
     .about-layout {
       display: flex;
       align-items: flex-start;
-      gap: 2rem;
+      gap: 2.5rem;
+    }
+
+    .about-photo {
+      width: 230px; /* Sizable, high-resolution presence */
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+      flex-shrink: 0;
     }
 
     .about-text {
       flex: 1;
-    }
-
-    .about-photo {
-      width: 175px;
-      height: auto;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      flex-shrink: 0;
     }
 
     /* Lists & Entries */
@@ -323,7 +323,7 @@
       text-align: center;
     }
 
-    /* Print Stylesheet: prints all sections sequentially if someone prints to PDF */
+    /* Print Stylesheet */
     @media print {
       nav, footer, .doc-links, .placeholder-box {
         display: none !important;
@@ -353,13 +353,8 @@
         gap: 1.5rem;
       }
 
-      .about-text {
-        order: 1;
-      }
-
       .about-photo {
-        order: 2;
-        width: 150px;
+        width: 190px; /* Balanced scale on mobile */
       }
 
       .conference-list li {
@@ -395,6 +390,13 @@
     <section id="about" class="section-view active">
       <h2>About</h2>
       <div class="about-layout">
+        <!-- Photo positioned on the left as a strong visual anchor -->
+        <img 
+          src="assets/profile.jpg" 
+          alt="Matteo Gori" 
+          class="about-photo" 
+        />
+
         <div class="about-text">
           <p>
             I am a PhD student in Mathematics at the Department of Mathematics, University of Vienna, 
@@ -406,12 +408,6 @@
             my Master's degree in Mathematics at the University of Pisa, alongside an exchange semester at ETH Z&uuml;rich.
           </p>
         </div>
-
-        <img 
-          src="assets/profile.jpg" 
-          alt="Matteo Gori" 
-          class="about-photo" 
-        />
       </div>
     </section>
 
@@ -419,10 +415,10 @@
     <section id="research" class="section-view">
       <h2>Research</h2>
       <p style="margin-bottom: 1.5rem;">
-        <strong>Research Interests:</strong> Geometric Measure Theory, Optimal Transport, Functional and Harmonic Analysis, Metric Geometry, and Analysis on Metric Measure Spaces (synthetic Ricci curvature bounds).
+        <strong>Research Interests:</strong> Geometric Measure Theory, Optimal Transport, Functional and Harmonic Analysis, Metric Geometry and Analysis on Metric Measure Spaces (synthetic Ricci curvature bounds).
       </p>
 
-      <!-- Preprints & Publications -->
+      <!-- Preprints and Publications -->
       <h3>Preprints and Publications</h3>
       <div class="placeholder-box" style="margin-bottom: 2rem;">
         Preprints and papers will appear here as they are completed.
@@ -558,7 +554,7 @@
       <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Awards and Honors</h3>
       <ul>
         <li><strong>Silver Medal</strong> (7th place), Imperial-Cambridge Mathematics Competition (2024)</li>
-        <li><strong>Scuola Normale Superiore Fellowship</strong> — Merit-based award covering full tuition, room, and board, awarded via national competitive entrance examination (2021)</li>
+        <li><strong>Scuola Normale Superiore Fellowship</strong> — Merit-based award covering full tuition, room and board, awarded via national competitive entrance examination (2021)</li>
         <li><strong>Gold Medal</strong> (4th place), Italian Mathematical Olympiads — recognized by <em>Fuoriclasse della Scuola</em> Award (2021)</li>
         <li><strong>Bronze Medal</strong>, Italian Physics Olympiads (2021)</li>
         <li><strong>Gold Medal</strong> (5th place), Italian Mathematical Olympiads — recognized by <em>Banca d'Italia</em> Prize (2020)</li>
@@ -618,7 +614,7 @@
       <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Skills and Languages</h3>
       <ul>
         <li><strong>Languages:</strong> Italian (native), English (fluent), French (elementary), German (basic)</li>
-        <li><strong>Technical &amp; Scientific Tools:</strong> LaTeX / TikZ, Python, C++, MATLAB</li>
+        <li><strong>Technical &amp; Scientific Tools:</strong> LaTeX, Python, C++, MATLAB</li>
       </ul>
     </section>
 
@@ -628,7 +624,6 @@
   </div>
 
   <script>
-    // Handles tab switching and deep linking based on the URL hash
     function renderRoute() {
       const allowedHashes = ['#about', '#research', '#cv'];
       let target = window.location.hash;
@@ -637,7 +632,6 @@
         target = '#about';
       }
 
-      // Hide all tabs, then activate target
       document.querySelectorAll('.section-view').forEach(sec => {
         sec.classList.remove('active');
       });
@@ -646,7 +640,6 @@
         activeSection.classList.add('active');
       }
 
-      // Update active navigation link
       document.querySelectorAll('#navbar a').forEach(link => {
         if (link.getAttribute('href') === target) {
           link.classList.add('active');
